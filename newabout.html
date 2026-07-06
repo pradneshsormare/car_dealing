@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — PDcars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #c8a44a;        /* warm gold */
+    --dark: #000000;
+    --dark-2: #0a0a0a;
+    --white: #ffffff;
+    --border: rgba(255, 255, 255, 0.07);
+    --gold: #D6A93C;
+
+    /* Light Theme Settings for Body */
+    --bg: #ffffff;
+    --ink: #0a0a0a;
+    --muted: rgba(0, 0, 0, 0.65);
+    --line: rgba(0, 0, 0, 0.08);
+    --surface: #f9f9fa;
+    --radius: 8px;
+
+    /* Dark Theme Settings for header/footer */
+    --nav-bg: #000000;
+    --footer-bg: #000000;
+    --footer-ink: #ffffff;
+    --footer-muted: rgba(255, 255, 255, 0.65);
+    --accent-dark: #b5923b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Poppins',sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.plate{
+    font-family:'Poppins',sans-serif;
+    text-transform:uppercase;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;object-fit:cover;}
+
+  /* ---------- Plate badge signature ---------- */
+  .plate{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 18px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:3px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1.5px solid var(--ink);
+    border-radius:3px;
+    box-shadow: inset 0 0 0 3px var(--bg);
+  }
+  .plate::before,.plate::after{
+    content:"";
+    width:5px;height:5px;
+    border-radius:50%;
+    background:var(--muted);
+    flex-shrink:0;
+  }
+  .plate--light{
+    color:var(--footer-ink);
+    background:var(--footer-bg);
+    border-color:var(--footer-muted);
+    box-shadow: inset 0 0 0 3px #000;
+  }
+  .plate--light::before,.plate--light::after{background:var(--gold);}
+
+  /* ── SINGLE NAVBAR ───────────────────────────── */
+  .navbar {
+    background: var(--dark);
+    padding: 8px 48px 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; left: 0; z-index: 200;
+    border-bottom: 1px solid var(--border);
+    min-height: 86px;
+    margin-bottom: 14px;
+    width: 100%;
+  }
+  .logo {
+    font-family: "Pacifico", cursive; font-size: 34px; color: var(--white);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo img { width: 44px; height: 44px; }
+
+  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
+  .nav-links a {
+    color: rgba(255, 255, 255, 0.65); font-size: 16px; font-weight: 500;
+    position: relative; padding-bottom: 3px; transition: color .2s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--accent); transition: width .3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+  .nav-right { display: flex; align-items: center; gap: 20px; }
+  .nav-socials { display: flex; gap: 10px; list-style: none; }
+  .nav-socials a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    color: var(--white);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .nav-socials a:hover { background: var(--accent); border-color: var(--accent); color: var(--dark); }
+
+  .nav-btn {
+    display: inline-flex; align-items: center; padding: 11px 24px;
+    border-radius: 8px; background: var(--accent); color: var(--dark);
+    font-size: 15px; font-weight: 700; letter-spacing: .4px;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .nav-btn:hover { box-shadow: 0 0 20px rgba(200, 164, 74, 0.45); transform: translateY(-1px); }
+
+  /* ---------- Header/Hero Section ---------- */
+  .about-hero {
+    text-align: center;
+    padding: 70px 8% 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .about-hero h1 {
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+  .about-hero p {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 650px;
+    line-height: 1.7;
+  }
+
+  /* ---------- Content Grid ---------- */
+  .about-section {
+    padding: 40px 8% 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .company-intro {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 90px;
+  }
+  .company-intro__text h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+  .company-intro__text p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 18px;
+  }
+  .company-intro__img {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid var(--line);
+    height: 380px;
+  }
+  .company-intro__img img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+  }
+
+  /* ---------- Pillars Section ---------- */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 34px;
+    margin-bottom: 90px;
+  }
+  .pillar-col {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 40px 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .pillar-col:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+    border-color: var(--accent);
+  }
+  .pillar-col h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    display: inline-block;
+  }
+  .pillar-col p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .pillar-col ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .pillar-col li {
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pillar-col li::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .pillar-col strong {
+    display: block;
+    color: var(--accent);
+    font-size: 14px;
+    margin-top: 14px;
+    font-weight: 600;
+  }
+
+  /* ---------- Team Section ---------- */
+  .team-section {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 80px 8%;
+  }
+  .team-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .team-container h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .team-container > p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    line-height: 1.7;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .team-member {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 24px;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .team-member:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+  }
+  .member-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 18px;
+    border: 2px solid var(--line);
+    transition: border-color 0.3s;
+  }
+  .team-member:hover .member-img {
+    border-color: var(--accent);
+  }
+  .member-img img {
+    width: 100%;
+    height: 100%;
+    object-position: center;
+  }
+  .team-member h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .team-member .pos {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+  .team-socials {
+    display: flex;
+    gap: 12px;
+  }
+  .team-socials a {
+    color: var(--muted);
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  .team-socials a:hover {
+    color: var(--accent);
+  }
+
+  /* ---------- Testimonial / Projects Section ---------- */
+  .btm-section {
+    padding: 80px 8%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .btm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 40px;
+  }
+  .btm-col h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+  }
+  .custom-list {
+    list-style: none;
+  }
+  .custom-list li {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .custom-list a {
+    color: var(--ink);
+    font-weight: 500;
+    transition: color 0.2s;
+    display: block;
+  }
+  .custom-list a:hover {
+    color: var(--accent);
+  }
+  .custom-list span {
+    font-size: 12px;
+    color: var(--muted);
+    display: block;
+    margin-top: 2px;
+  }
+  .blockquote-1 {
+    background: var(--surface);
+    border-left: 4px solid var(--accent);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .blockquote-1 p {
+    font-style: italic;
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .blockquote-1 small {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    background:var(--footer-bg);
+    color:var(--footer-ink);
+    padding:80px 8% 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer__grid{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:70px;
+  }
+  .footer__brand{
+    font-family:'Poppins',sans-serif;
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:1px;
+    margin:20px 0 16px;
+  }
+  .footer__brand span{color:var(--accent);}
+  .footer__about{
+    color:var(--footer-muted);
+    font-size:14px;
+    max-width:340px;
+    margin-bottom:34px;
+    line-height: 1.8;
+  }
+  .form-card{
+    background:var(--dark-2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:34px;
+  }
+  .form-card h3{
+    font-size:22px;
+    letter-spacing:.5px;
+    margin:16px 0 6px;
+    color: var(--footer-ink);
+  }
+  .form-card > p{
+    color:var(--footer-muted);
+    font-size:13px;
+    margin-bottom:26px;
+  }
+  .field{
+    margin-bottom:18px;
+  }
+  .field label{
+    display:block;
+    font-size:12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--footer-muted);
+    margin-bottom:8px;
+  }
+  .field input,.field textarea{
+    width:100%;
+    background:var(--dark);
+    border:1px solid rgba(255, 255, 255, 0.1);
+    border-radius:4px;
+    padding:12px 14px;
+    color:var(--footer-ink);
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .field input:focus,.field textarea:focus{border-color:var(--accent);}
+  .field textarea{resize:vertical;min-height:80px;}
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .submit-btn{
+    width:100%;
+    padding:14px;
+    background:var(--accent);
+    color:var(--dark);
+    border:none;
+    border-radius:8px;
+    font-family:'Poppins',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background .2s ease, box-shadow .2s ease;
+  }
+  .submit-btn:hover{
+    background:var(--accent-dark);
+    box-shadow: 0 0 20px rgba(200, 164, 74, 0.3);
+  }
+  .form-note{
+    margin-top:14px;
+    font-size:13px;
+    color:#7CC48F;
+    display:none;
+  }
+  .form-note.show{display:block;}
+
+  .footer__bottom{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid rgba(255, 255, 255, 0.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:13px;
+    color:var(--footer-muted);
+    letter-spacing:.5px;
+  }
+  .f-socials { display:flex; gap:10px; list-style:none; }
+  .f-socials a {
+    width:32px; height:32px; border-radius:50%;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(255, 255, 255, 0.08);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+    color: var(--footer-ink);
+    transition:background .2s, border-color .2s, color .2s;
+  }
+  .f-socials a:hover { background:var(--accent); border-color:var(--accent); color:var(--dark); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:990px){
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .team-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .btm-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .company-intro {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .company-intro__img {
+      height: 300px;
+    }
+  }
+
+  @media (max-width:900px){
+    .navbar {
+      padding: 14px 20px 16px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+    .nav-socials {
+      display: none;
+    }
+    .nav-right {
+      width: 100%;
+      justify-content: center;
+    }
+    .footer__grid{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:620px) {
+    .navbar {
+      justify-content: center;
+      padding: 14px 16px 16px;
+    }
+    .nav-links {
+      display: none;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ── SINGLE NAVBAR ──────────────────────────────────── -->
+  <nav class="navbar">
+    <a href="hellow.html" class="logo">
+      <img src="tyres.png" alt="PD Cars">PDcars
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="hellow.html">Home</a></li>
+      <li><a href="newabout.html" class="active">About</a></li>
+      <li><a href="#">Find Cars</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <ul class="nav-socials">
+        <li><a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a></li>
+      </ul>
+      <a href="login.html" class="nav-btn">Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- ---------- Hero ---------- -->
+  <section class="about-hero">
+    <span class="plate">Who We Are</span>
+    <h1>About Us</h1>
+    <p>PDcars is the leading independent car buying consultancy. We inspect, negotiate, and handle all the details so you get the perfect car with total confidence.</p>
+  </section>
+
+  <!-- ---------- Main Section ---------- -->
+  <main class="about-section">
+    
+    <!-- Intro block -->
+    <div class="company-intro">
+      <div class="company-intro__text">
+        <h2>Unbiased Advice, Expert Diagnostics</h2>
+        <p>At PDcars, we do things differently. We are not a dealership, and we don't hold any car inventory. This means our advice is 100% unbiased. Our sole mission is to help you buy, sell, or maintain your vehicle with absolute peace of mind.</p>
+        <p>Founded in Nagpur and recently expanded to Pune, our team consists of experienced diagnostic technicians, expert price negotiators, and customer relationship professionals who guide you from inspection to final registration.</p>
+      </div>
+      <div class="company-intro__img">
+        <img src="garagewhite.jpg" alt="PDcars premium garage workspace">
+      </div>
+    </div>
+
+    <!-- 3-Pillar Row -->
+    <div class="pillars-grid">
+      <!-- Col 1 -->
+      <div class="pillar-col">
+        <h3>Our Mission</h3>
+        <p>To eliminate the stress, opacity, and hidden risks from the car-buying process, ensuring that every buyer turns the key with complete transparency.</p>
+        <p>We work exclusively for you, checking every vehicle's mechanical health, clear titles, and fair market price.</p>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="pillar-col">
+        <h3>Key Achievements</h3>
+        <strong>2024 — Regional Expansion</strong>
+        <p>Launched Pune consulting operations, helping over 500 premium car buyers secure verified vehicles.</p>
+        <strong>2022 — Showroom Launch</strong>
+        <p>Established our Nagpur corporate showroom and diagnostics lab at Wardha Road.</p>
+        <strong>2020 — Firm Foundation</strong>
+        <p>Inaugurated PDcars as Nagpur's first dedicated independent car-buying advisory.</p>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="pillar-col">
+        <h3>Core Features</h3>
+        <ul>
+          <li>Comprehensive 150-Point Mechanic Check</li>
+          <li>Dealership Pricing Negotiations</li>
+          <li>Title, Loan & Registration Verification</li>
+          <li>Unbiased Car Acquisition Matching</li>
+          <li>After-Sale Doorstep Maintenance Support</li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ---------- Team Section ---------- -->
+  <section class="team-section">
+    <div class="team-container">
+      <span class="plate">The Advisors</span>
+      <h2 style="margin-top: 10px;">Our Team</h2>
+      <p>Dedicated automotive consultants and engineers working to protect your investment.</p>
+      
+      <div class="team-grid">
+        <!-- John Doe -->
+        <div class="team-member">
+          <div class="member-img">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=250" alt="John Doe">
+          </div>
+          <h4>John Doe</h4>
+          <span class="pos">CEO & Founder</span>
+          <div class="team-socials">
+            <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+          </div>
+        </div>
+
+        <!-- Larry Doe -->
+        <div class="team-member">
+          <div class="member-img">
+            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=250" alt="Larry Doe">
+          </div>
+          <h4>Larry Doe</h4>
+          <span class="pos">Chief Automotive Engineer</span>
+          <div class="team-socials">
+            <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+          </div>
+        </div>
+
+        <!-- Ranith Kays -->
+        <div class="team-member">
+          <div class="member-img">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=250" alt="Ranith Kays">
+          </div>
+          <h4>Ranith Kays</h4>
+          <span class="pos">Head of Acquisitions</span>
+          <div class="team-socials">
+            <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+          </div>
+        </div>
+
+        <!-- Joan Ray -->
+        <div class="team-member">
+          <div class="member-img">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=250" alt="Joan Ray">
+          </div>
+          <h4>Joan Ray</h4>
+          <span class="pos">Client Relationship Manager</span>
+          <div class="team-socials">
+            <a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
+            <a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Btm Section ---------- -->
+  <section class="btm-section">
+    <div class="btm-grid">
+      <!-- Col 1 -->
+      <div class="btm-col">
+        <h3>Recent Advisory Work</h3>
+        <ul class="custom-list">
+          <li>
+            <a href="#">Premium SUV Inspection</a>
+            <span>Nagpur — Evaluated suspension & electronics</span>
+          </li>
+          <li>
+            <a href="#">Luxury Sedan Price Negotiation</a>
+            <span>Pune — Saved ₹3.5 Lakhs off list price</span>
+          </li>
+          <li>
+            <a href="#">Vintage Acquisition Search</a>
+            <span>Mumbai — Verified engine history & certification</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 2 -->
+      <div class="btm-col">
+        <h3>Featured Services</h3>
+        <ul class="custom-list">
+          <li><a href="#">Comprehensive Diagnostics Scan</a></li>
+          <li><a href="#">Dealer & Private Seller Escrow Services</a></li>
+          <li><a href="#">Interstate Vehicle Transport Coordination</a></li>
+          <li><a href="#">Registration & RTO Paperwork Transfer</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3 -->
+      <div class="btm-col">
+        <h3>Our Clients</h3>
+        <blockquote class="blockquote-1">
+          <p>"PDcars made buying my BMW completely effortless. Their engineer inspected the car, found a minor gearbox issue which they had the dealer fix, and negotiated a better price. Incredible service!"</p>
+          <small>Rahul Deshmukh, Pune</small>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Footer ---------- -->
+  <footer class="footer" id="contact-form">
+    <div class="footer__grid">
+      <div>
+        <span class="plate plate--light">PDcars</span>
+        <div class="footer__brand">PDcars</div>
+        <p class="footer__about">Independent car buying and consulting advice — inspections, price negotiation, paperwork and after-sale support, from a team that only works for you, not the dealership.</p>
+      </div>
+
+      <div class="form-card">
+        <span class="plate plate--light">Get In Touch</span>
+        <h3>Send us your details</h3>
+        <p>Fill this in and a consultant will call you back, usually within one business day.</p>
+
+        <form id="contactForm">
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" name="fname" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="fphone">Phone Number</label>
+              <input type="tel" id="fphone" name="fphone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="femail" placeholder="you@example.com" required>
+          </div>
+
+          <div class="field">
+            <label for="faddress">Address</label>
+            <input type="text" id="faddress" name="faddress" placeholder="Street, city, state" required>
+          </div>
+
+          <div class="field">
+            <label for="fmessage">Message (optional)</label>
+            <textarea id="fmessage" name="fmessage" placeholder="Tell us what you're looking for..."></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Submit Enquiry</button>
+          <p class="form-note" id="formNote">Thanks — your details have been received. Our team will reach out shortly.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; 2024 All Rights Reserved by PD Cars</p>
+      <ul class="f-socials">
+        <li><a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a></li>
+        <li><a href="#" aria-label="Youtube"><ion-icon name="logo-youtube"></ion-icon></a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const note = document.getElementById('formNote');
+      note.classList.add('show');
+      this.reset();
+      setTimeout(()=>note.classList.remove('show'), 6000);
+    });
+  </script>
+</body>
+</html>

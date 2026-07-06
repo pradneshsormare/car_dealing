@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #c8a44a;
+  --dark: #000000;
+  --dark-2: #0a0a0a;
+  --white: #ffffff;
+  --muted: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.07);
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: var(--dark-2);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 48px 12px;
+  background: var(--dark);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  min-height: 86px;
+  margin-bottom: 14px;
+}
+
+.toyo {
+  width: 44px;
+  height: 44px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 34px;
+  font-family: "Pacifico", cursive;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-socials {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.nav-socials a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-socials a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dark);
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 24px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--dark);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+  box-shadow: 0 0 20px rgba(200, 164, 74, 0.45);
+  transform: translateY(-1px);
+}
+
+.carfit {
+  min-height: calc(100vh - 100px);
+  background: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.twoadd {
+  text-align: center;
+  color: rgb(125, 51, 51);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: min(53vw, 700px);
+  justify-self: center;
+}
+
+.twoadd>p {
+  font-family: "Poppins", sans-serif;
+}
+
+.twoadd>p:nth-child(1) {
+  font-size: 80px;
+  font-weight: 600;
+}
+
+.twoadd>p:nth-child(2) {
+  font-size: 35px;
+  font-weight: 400;
+}
+
+.twoadd>p:nth-child(3) {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.trkbtn {
+  display: flex;
+  width: 190px;
+  height: 60px;
+  font-size: 22px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  align-items: center;
+  margin: 12px auto 0;
+  cursor: pointer;
+  transition: 0.4s ease;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  border: 1px solid #ffffff;
+  padding-left: 16px;
+}
+
+.trkbtn:hover {
+  box-shadow: 0 0 10px #83ecf4, 0 0 20px #83ecf4, 0 0 30px #83ecf4;
+  color: #ffffff;
+}
+
+.bgcar {
+  width: min(100%, 720px);
+  height: auto;
+  justify-self: center;
+  align-self: end;
+}
+
+.thbg {
+  width: 100%;
+  height: 52vw;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background: url("bmwop.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+.bmw>video {
+  width: 41vw;
+  padding: 50px;
+}
+
+.hd-pt2 {
+  width: 100%;
+  padding-left: 110px;
+}
+
+.hd-pt2>p:nth-child(1) {
+  color: #000000;
+  font-size: 50px;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 14px 20px 16px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+
+  .logo {
+    font-size: 36px;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .carfit {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    gap: 24px;
+  }
+
+  .twoadd {
+    width: 100%;
+  }
+
+  .twoadd>p:nth-child(1) {
+    font-size: 54px;
+  }
+
+  .twoadd>p:nth-child(2) {
+    font-size: 28px;
+  }
+
+  .bgcar {
+    width: min(100%, 560px);
+  }
+}
+
+@media (max-width: 560px) {
+  .navbar {
+    justify-content: center;
+    padding: 14px 16px 16px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-socials {
+    display: none;
+  }
+
+  .twoadd>p:nth-child(1) {
+    font-size: 42px;
+  }
+
+  .twoadd>p:nth-child(2) {
+    font-size: 22px;
+  }
+
+  .twoadd>p:nth-child(3) {
+    font-size: 18px;
+  }
+
+  .trkbtn {
+    width: 170px;
+    font-size: 18px;
+  }
+}

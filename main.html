@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #c8a44a;
+  --dark: #000000;
+  --dark-2: #0a0a0a;
+  --white: #ffffff;
+  --muted: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.07);
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  /* background: var(--dark-2); */
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 48px 12px;
+  background: var(--dark);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  min-height: 86px;
+  margin-bottom: 14px;
+}
+
+.toyo {
+  width: 44px;
+  height: 44px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 34px;
+  font-family: "Pacifico", cursive;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-socials {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+}
+
+.nav-socials a {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-socials a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--dark);
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 24px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--dark);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nav-btn:hover {
+  box-shadow: 0 0 20px rgba(200, 164, 74, 0.45);
+  transform: translateY(-1px);
+}
+
+    </style>
+</head>
+<body>
+        <nav class="navbar">
+        <a href="hellow.html" class="logo">
+            <img src="tyres.png" class="toyo" alt="PD Cars logo">PDcars
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="hellow.html" class="active">Home</a></li>
+            <li><a href="newabout.html">About</a></li>
+            <li><a href="#">Find Cars</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <ul class="nav-socials">
+                <li><a href="#" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>
