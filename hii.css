@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   font-family: "Poppins", sans-serif;
-  background: var(--dark-2);
+  background: #ffffff;
 }
 
 .navbar {
@@ -29,9 +29,11 @@ body {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
+  left: 0;
   z-index: 200;
   min-height: 86px;
   margin-bottom: 14px;
+  width: 100%;
 }
 
 .toyo {
