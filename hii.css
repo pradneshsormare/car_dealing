@@ -215,7 +215,7 @@ body {
   grid-template-columns: 2fr 1fr;
   justify-content: center;
   align-items: center;
-  background: url("bmwop.jpg") no-repeat center center;
+  background: url("cars_image1/bmwop.jpg") no-repeat center center;
   background-size: cover;
   position: relative;
 }
