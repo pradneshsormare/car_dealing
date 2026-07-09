@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register — PDcars</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -15,7 +15,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
-
         }
 
         :root {
@@ -106,32 +105,6 @@
             gap: 20px;
         }
 
-        .nav-socials {
-            display: flex;
-            gap: 10px;
-            list-style: none;
-        }
-
-        .nav-socials a {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-        }
-
-        .nav-socials a:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--dark);
-        }
-
         .nav-btn {
             display: inline-flex;
             align-items: center;
@@ -161,16 +134,15 @@
             z-index: 1;
         }
 
-
         .wrapper {
             width: 415px;
-            height: 420px;
+            height: 580px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.12);
             -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            color: #ffff;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             border-radius: 30px;
@@ -197,9 +169,7 @@
             border-radius: 50px;
             padding: 5px 0px;
             margin-bottom: 20px;
-
         }
-
 
         .input-box>input {
             border: none;
@@ -209,17 +179,16 @@
             margin-left: 15px;
             margin-right: 15px;
             color: #fff;
+            width: 100%;
         }
 
         .input-box input::placeholder {
             color: #fff;
-
         }
 
         .input-box>i {
             padding-top: 7px;
             padding-right: 15px;
-            
         }
 
         .remember-forgot {
@@ -227,6 +196,14 @@
             justify-content: space-between;
             font-size: 15px;
             gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
 
         button {
@@ -259,7 +236,7 @@
             font-weight: 600;
         }
 
-        .remember-forgot a{
+        .remember-forgot a {
             color: #fff;
             text-decoration: none;
         }
@@ -273,7 +250,6 @@
             overflow: hidden;
             z-index: -100;
         }
-
 
         #bg-video {
             width: 100%;
@@ -319,8 +295,7 @@
                 padding: 14px 16px 16px;
             }
 
-            .nav-links,
-            .nav-socials {
+            .nav-links {
                 display: none;
             }
 
@@ -369,22 +344,29 @@
     <div class="page-shell">
         <div class="wrapper">
             <form action="">
-                <h2>Login</h2>
+                <h2>Register</h2>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" placeholder="Full Name" required>
                     <i><ion-icon name="person"></ion-icon></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Email Address" required>
+                    <i><ion-icon name="mail"></ion-icon></i>
                 </div>
                 <div class="input-box">
                     <input type="password" placeholder="Password" required>
                     <i><ion-icon name="lock-closed"></ion-icon></i>
                 </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember me</label>
-                    <a href="#">Forgot Password?</a>
+                <div class="input-box">
+                    <input type="password" placeholder="Confirm Password" required>
+                    <i><ion-icon name="lock-closed"></ion-icon></i>
                 </div>
-                <button type="submit">Login</button>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" required> I agree to the terms & conditions</label>
+                </div>
+                <button type="submit">Register</button>
                 <div class="register-link">
-                    <p>Don't have an account ? <a href="register.html">Register</a></p>
+                    <p>Already have an account? <a href="login.html">Login</a></p>
                 </div>
             </form>
         </div>
@@ -392,4 +374,5 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
