@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Cars - PD Cars</title>
+    
+    <!-- Existing Global Styles & Fonts -->
+    <link rel="stylesheet" href="hii.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+    
+    <!-- Find Cars Specific Styles -->
+    <link rel="stylesheet" href="find-cars.css">
+</head>
+<body style="background: var(--dark-2, #0a0a0a);">
+
+    <!-- Marketplace Navbar -->
+    <nav class="marketplace-nav">
+        <!-- Logo -->
+        <a href="hellow.html" class="logo">
+            <img src="tyres.png" class="toyo" alt="PD Cars logo">PDcars
+        </a>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="text" id="searchInput" placeholder="Search by brand, model, or car name...">
+        </div>
+
+        <!-- Right Icons & Links -->
+        <div class="nav-icons">
+            <a href="hellow.html" title="Home"><ion-icon name="home-outline"></ion-icon></a>
+            <a href="contact.html" title="Contact Us"><ion-icon name="call-outline"></ion-icon></a>
+            
+            <a href="#" title="Wishlist">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="icon-badge" id="wishlistCount">0</span>
+            </a>
+            
+            <a href="#" title="Cart">
+                <ion-icon name="cart-outline"></ion-icon>
+                <span class="icon-badge" id="cartCount">0</span>
+            </a>
+            
+            <a href="login.html" class="nav-btn" style="font-size: 14px; padding: 8px 20px;">Sign Up</a>
+        </div>
+    </nav>
+
+    <!-- Hero Slideshow -->
+    <section class="hero-slider-section">
+        <!-- Slide 1 -->
+        <div class="hero-slide active">
+            <img src="bmwop12.jpg" alt="BMW M4">
+            <div class="hero-slide-content">
+                <h2>BMW M4 Competition</h2>
+                <p>“Performance meets luxury.”</p>
+                <div class="hero-price">Starting Price: ₹1.53 Crore</div>
+                <div class="hero-emi">EMI from: ₹2.5 Lakh/month</div>
+                <div class="hero-buttons">
+                    <button class="btn-primary">View Details</button>
+                    <button class="btn-secondary" onclick="toggleCart(1)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 2 -->
+        <div class="hero-slide">
+            <img src="garageop.jpg" alt="Porsche 911">
+            <div class="hero-slide-content">
+                <h2>Porsche 911 GT3</h2>
+                <p>“Born on the track, built for the road.”</p>
+                <div class="hero-price">Starting Price: ₹1.90 Crore</div>
+                <div class="hero-emi">EMI from: ₹3.2 Lakh/month</div>
+                <div class="hero-buttons">
+                    <button class="btn-primary">View Details</button>
+                    <button class="btn-secondary" onclick="toggleCart(7)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero-slide">
+            <img src="garagewhite.jpg" alt="Mercedes GLE">
+            <div class="hero-slide-content">
+                <h2>Mercedes-Benz GLE</h2>
+                <p>“The strength of character.”</p>
+                <div class="hero-price">Starting Price: ₹96 Lakh</div>
+                <div class="hero-emi">EMI from: ₹1.7 Lakh/month</div>
+                <div class="hero-buttons">
+                    <button class="btn-primary">View Details</button>
+                    <button class="btn-secondary" onclick="toggleCart(4)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="slider-controls">
+            <button class="slider-prev"><ion-icon name="chevron-back-outline"></ion-icon></button>
+            <button class="slider-next"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+        </div>
+        <div class="slider-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Two Column Layout (Sidebar + Catalog) -->
+    <section class="marketplace-container">
+        
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+            <div class="filter-sticky">
+                <form id="filterForm">
+                    <div class="filter-header">
+                        <h3>Filter Cars</h3>
+                        <button type="button" class="clear-btn" id="clearBtn">Clear All</button>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-inputs">
+                            <input type="number" id="minPrice" placeholder="Min" value="0">
+                            <input type="number" id="maxPrice" placeholder="Max" value="20000000">
+                        </div>
+                        <input type="range" class="price-slider" id="priceSlider" min="0" max="20000000" step="500000" value="20000000">
+                    </div>
+
+                    <!-- Brand -->
+                    <div class="filter-group">
+                        <h4>Brand</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="BMW"> BMW</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Mercedes-Benz"> Mercedes-Benz</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Audi"> Audi</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Porsche"> Porsche</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Jaguar"> Jaguar</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Land Rover"> Land Rover</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Volvo"> Volvo</label>
+                            <label class="checkbox-label"><input type="checkbox" name="brand" value="Toyota"> Toyota</label>
+                        </div>
+                    </div>
+
+                    <!-- Car Type -->
+                    <div class="filter-group">
+                        <h4>Car Type</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="type" value="Sedan"> Sedan</label>
+                            <label class="checkbox-label"><input type="checkbox" name="type" value="SUV"> SUV</label>
+                            <label class="checkbox-label"><input type="checkbox" name="type" value="Coupe"> Coupe</label>
+                            <label class="checkbox-label"><input type="checkbox" name="type" value="Sports Car"> Sports Car</label>
+                        </div>
+                    </div>
+
+                    <!-- Fuel Type -->
+                    <div class="filter-group">
+                        <h4>Fuel Type</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="fuel" value="Petrol"> Petrol</label>
+                            <label class="checkbox-label"><input type="checkbox" name="fuel" value="Diesel"> Diesel</label>
+                            <label class="checkbox-label"><input type="checkbox" name="fuel" value="Electric"> Electric</label>
+                            <label class="checkbox-label"><input type="checkbox" name="fuel" value="Hybrid"> Hybrid</label>
+                        </div>
+                    </div>
+
+                    <!-- Transmission -->
+                    <div class="filter-group">
+                        <h4>Transmission</h4>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label"><input type="checkbox" name="transmission" value="Automatic"> Automatic</label>
+                            <label class="checkbox-label"><input type="checkbox" name="transmission" value="Manual"> Manual</label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-primary apply-btn" onclick="applyFilters()">Apply Filters</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Catalog Area -->
+        <main class="catalog-area">
+            <div class="catalog-header">
+                <div>
+                    <h2>Explore Our Cars</h2>
+                    <p id="resultCount" style="color: var(--muted); margin-top: 5px;">Showing 12 cars</p>
+                </div>
+                <div class="sort-container">
+                    <select id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Car Grid -->
+            <div class="car-grid" id="carGrid">
+                <!-- Cars generated via JS -->
+            </div>
+        </main>
+
+    </section>
+
+    <!-- Custom Footer inline style overrides if needed to match global footer but ensuring layout -->
+    <style>
+        .custom-footer {
+            background: #000;
+            padding: 60px 48px 30px;
+            color: #fff;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .footer-grid-cars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        @media(max-width: 992px) {
+            .footer-grid-cars {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 576px) {
+            .footer-grid-cars {
+                grid-template-columns: 1fr;
+            }
+        }
+        .footer-col h3 {
+            color: var(--accent, #c8a44a);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .footer-col p, .footer-col a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-decoration: none;
+            display: block;
+            line-height: 1.5;
+        }
+        .footer-col a:hover {
+            color: var(--accent, #c8a44a);
+        }
+        .footer-bottom-bar {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+    <footer class="custom-footer">
+        <div class="footer-grid-cars">
+            <div class="footer-col">
+                <a href="hellow.html" class="logo" style="margin-bottom: 20px; color: #fff;">
+                    <img src="tyres.png" class="toyo" alt="PD Cars logo" style="width:30px; height:30px; margin-right:5px;">PDcars
+                </a>
+                <p>Independent car buying and consulting advice — inspections, price negotiation, paperwork and after-sale support.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="hellow.html">Home</a>
+                <a href="newabout.html">About</a>
+                <a href="find-cars.html">Find Cars</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><ion-icon name="mail-outline"></ion-icon> info@pdcars.com</p>
+                <p><ion-icon name="call-outline"></ion-icon> +91 98765 43210</p>
+            </div>
+            <div class="footer-col">
+                <h3>Our Showrooms</h3>
+                <p><strong>Nagpur:</strong><br>123 Luxury Drive, Civil Lines, Nagpur 440001</p>
+                <p><strong>Pune:</strong><br>45 Auto Avenue, Koregaon Park, Pune 411001</p>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            &copy; 2024 All Rights Reserved by PD Cars
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="find-cars.js"></script>
+</body>
+</html>
