@@ -310,9 +310,9 @@ function renderCars() {
           </div>
           
           <div class="card-actions">
-            <button class="btn-secondary">View Details</button>
+            <button class="btn-secondary" onclick="window.location.href='car-details.html?id=${car.id}'">View Details</button>
             <button class="btn-primary" onclick="toggleCart(${car.id})">
-              ${inCart ? 'Added to Cart' : 'Add to Cart'}
+              ${inCart ? 'Selected' : 'Buy'}
             </button>
           </div>
         </div>

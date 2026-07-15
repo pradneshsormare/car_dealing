@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Details - PD Cars</title>
+    
+    <!-- Existing Global Styles & Fonts -->
+    <link rel="stylesheet" href="hii.css">
+    <link rel="stylesheet" href="find-cars.css">
+    <link rel="stylesheet" href="car-details.css">
+    
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+    </style>
+    
+    <!-- Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <!-- html2pdf for Invoice -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- Marketplace Navbar -->
+    <nav class="marketplace-nav">
+        <!-- Logo -->
+        <a href="hellow.html" class="logo">
+            <img src="tyres.png" class="toyo" alt="PD Cars logo">PDcars
+        </a>
+
+        <!-- Right Icons & Links -->
+        <div class="nav-icons">
+            <a href="hellow.html" title="Home"><ion-icon name="home-outline"></ion-icon></a>
+            <a href="find-cars.html" title="Marketplace"><ion-icon name="car-sport-outline"></ion-icon></a>
+            <a href="#" title="Wishlist">
+                <ion-icon name="heart-outline"></ion-icon>
+                <span class="icon-badge">0</span>
+            </a>
+            <a href="#" title="Orders">
+                <ion-icon name="receipt-outline"></ion-icon>
+                <span class="icon-badge">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content container -->
+    <div class="car-details-container" id="carDetailsContainer">
+        
+        <!-- Header -->
+        <div class="car-header">
+            <div class="car-title">
+                <span class="car-badge" id="carBadge">Premium</span>
+                <h1 id="carFullName">Brand Model</h1>
+            </div>
+            <div class="car-pricing">
+                <div class="car-price" id="carPriceFormatted">₹0.00 Lakh</div>
+                <div class="car-emi" id="carEmiFormatted">EMI from: ₹0 Lakh/month</div>
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="addToWishlist()"><ion-icon name="heart-outline"></ion-icon> Wishlist</button>
+                    <button class="btn btn-secondary"><ion-icon name="git-compare-outline"></ion-icon> Compare</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Specs -->
+        <div class="quick-specs">
+            <div class="spec-item">
+                <ion-icon name="water-outline" class="spec-icon"></ion-icon>
+                <div class="spec-text">
+                    <span class="spec-label">Fuel Type</span>
+                    <span class="spec-value" id="qsFuel">Petrol</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <ion-icon name="settings-outline" class="spec-icon"></ion-icon>
+                <div class="spec-text">
+                    <span class="spec-label">Transmission</span>
+                    <span class="spec-value" id="qsTrans">Automatic</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <ion-icon name="speedometer-outline" class="spec-icon"></ion-icon>
+                <div class="spec-text">
+                    <span class="spec-label">Mileage</span>
+                    <span class="spec-value" id="qsMileage">10 kmpl</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <ion-icon name="people-outline" class="spec-icon"></ion-icon>
+                <div class="spec-text">
+                    <span class="spec-label">Seating</span>
+                    <span class="spec-value" id="qsSeating">4</span>
+                </div>
+            </div>
+            <div class="spec-item">
+                <ion-icon name="car-outline" class="spec-icon"></ion-icon>
+                <div class="spec-text">
+                    <span class="spec-label">Body Type</span>
+                    <span class="spec-value" id="qsBody">Coupe</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <!-- Left Column: Gallery & Specs -->
+            <div class="left-column">
+                
+                <!-- Gallery -->
+                <div class="car-gallery">
+                    <div class="main-image">
+                        <img src="" id="mainImage" alt="Car Main Image">
+                    </div>
+                    <div class="thumbnail-strip" id="thumbnailContainer">
+                        <!-- Thumbnails injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Colors Section -->
+                <div class="specs-section" style="margin-top: 30px;">
+                    <h3>Available Colors</h3>
+                    <div class="colors-container" id="colorsContainer">
+                        <!-- Color swatches injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Full Specs -->
+                <div class="specs-section" style="margin-top: 40px;" id="fullSpecsContainer">
+                    <h3>Full Specifications</h3>
+                    
+                    <!-- Specs Accordions injected via JS -->
+                    
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar (EMI & Buy) -->
+            <div class="sidebar">
+                
+                <!-- EMI Widget -->
+                <div class="widget">
+                    <h3><ion-icon name="calculator-outline"></ion-icon> EMI Calculator</h3>
+                    
+                    <div class="emi-slider-group">
+                        <label>Down Payment <span>₹<span id="downPaymentValue">500000</span></span></label>
+                        <input type="range" id="downPaymentSlider" min="100000" max="10000000" step="50000" value="500000">
+                    </div>
+                    
+                    <div class="emi-slider-group">
+                        <label>Tenure (Months) <span><span id="tenureValue">60</span> Months</span></label>
+                        <input type="range" id="tenureSlider" min="12" max="84" step="12" value="60">
+                    </div>
+                    
+                    <div class="emi-slider-group">
+                        <label>Interest Rate (%) <span><span id="interestValue">9.5</span>%</span></label>
+                        <input type="range" id="interestSlider" min="7" max="15" step="0.5" value="9.5">
+                    </div>
+                    
+                    <div class="emi-result">
+                        <div style="font-size: 14px; color: var(--muted);">Estimated EMI</div>
+                        <div class="emi-amount">₹<span id="calculatedEmi">0</span></div>
+                        <div style="font-size: 12px; color: var(--muted);">per month</div>
+                    </div>
+                </div>
+
+                <!-- Buy Action -->
+                <div class="widget" style="text-align: center;">
+                    <h3>Ready to own?</h3>
+                    <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">Book this car now to reserve your allocation.</p>
+                    <button class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 18px;" onclick="openCheckoutModal()">Buy Now</button>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal-content">
+            <ion-icon name="close-outline" class="close-modal" onclick="closeCheckoutModal()"></ion-icon>
+            
+            <div id="checkoutFormStep">
+                <h2 style="margin-top: 0; color: var(--accent); font-family: 'Montserrat', sans-serif;">Complete Your Purchase</h2>
+                
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div class="summary-row">
+                        <span id="checkoutCarName">Brand Model</span>
+                        <span id="checkoutCarPrice">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Color</span>
+                        <span id="checkoutCarColor">Not Selected</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxes (RTO + Insurance)</span>
+                        <span>₹2,50,000</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total On-Road Price</span>
+                        <span id="checkoutTotalPrice">₹0</span>
+                    </div>
+                </div>
+                
+                <form id="checkoutForm" onsubmit="processPurchase(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="custName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="tel" id="custPhone" required placeholder="+91 9876543210" pattern="[0-9+\s]+">
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <input type="text" id="custAddress" required placeholder="123 Luxury Avenue, Mumbai">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <select id="paymentMethod" required>
+                            <option value="Full Payment">Full Payment (Bank Transfer)</option>
+                            <option value="EMI Finance">EMI Finance Partner</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Confirm Purchase</button>
+                </form>
+            </div>
+            
+            <div id="successStep" class="success-screen">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                <h2>Order Confirmed!</h2>
+                <p style="color: var(--muted); margin-bottom: 25px;">Your booking has been successfully processed. Order ID: <strong id="displayOrderId">#12345</strong></p>
+                <button class="btn btn-primary" style="margin: 0 auto;" onclick="downloadInvoice()">Download Invoice (PDF)</button>
+                <button class="btn btn-secondary" style="margin: 15px auto 0;" onclick="closeCheckoutModal()">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Invoice Template for PDF Generation -->
+    <div id="invoice-container">
+        <div class="invoice-header">
+            <div class="invoice-logo">PD Cars</div>
+            <div style="text-align: right;">
+                <h2 style="margin: 0 0 10px 0;">INVOICE</h2>
+                <div id="invDate">Date: </div>
+                <div id="invOrderNo">Order No: </div>
+            </div>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+            <div>
+                <h4 style="margin-bottom: 5px;">Billed To:</h4>
+                <div id="invCustName">Name</div>
+                <div id="invCustPhone">Phone</div>
+                <div id="invCustAddress">Address</div>
+            </div>
+            <div style="text-align: right;">
+                <h4 style="margin-bottom: 5px;">Dealer Info:</h4>
+                <div>PD Cars Showroom</div>
+                <div>Luxury Auto Park, Mumbai</div>
+                <div>contact@pdcars.com</div>
+            </div>
+        </div>
+        
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Color</th>
+                    <th>VIN</th>
+                    <th style="text-align: right;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="invCarModel">Brand Model</td>
+                    <td id="invCarColor">Color</td>
+                    <td id="invVin">VIN-XXXX</td>
+                    <td id="invCarPrice" style="text-align: right;">0</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right;">RTO & Insurance:</td>
+                    <td style="text-align: right;">₹2,50,000</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right;"><strong>Total On-Road Price:</strong></td>
+                    <td id="invTotal" style="text-align: right; font-weight: bold; font-size: 18px;">0</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 40px; margin-bottom: 10px;">
+            <strong>Payment Method: </strong><span id="invPaymentMode">Mode</span>
+        </div>
+        <div style="color: #666; font-size: 14px; text-align: center; margin-top: 40px;">
+            Thank you for your purchase. Drive safe!
+        </div>
+    </div>
+
+    <script src="car-data.js"></script>
+    <script src="car-details.js"></script>
+</body>
+</html>
